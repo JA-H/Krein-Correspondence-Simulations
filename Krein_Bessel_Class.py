@@ -4,8 +4,9 @@ from scipy.special import gamma, kv
 
 class Krein_Bessel:
     """
-    This class contains the constants and functions that appear in the Krein correspondence for the special case where
-    \lambda \mapsto \lambda^(\alpha/2) for some \alpha in (0, 2).
+    This class contains the constants and functions that appear in the Krein \
+        correspondence for the special case where \lambda \mapsto \lambda^(\alpha/2) \
+        for some \alpha in (0, 2).
     """
     def __init__(self, alpha):
         self.alpha = alpha

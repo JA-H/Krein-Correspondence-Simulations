@@ -55,7 +55,8 @@ plt.close()
 #Simulated u(x, 0) vs. Actual u(x, 0)
 x_bound = np.linspace(x_0, x_1, N_x )
 u_bound_val = np.array( [u(x, 0.0) for x in x_bound ] )
-act_val = (1.0/test.Laplace_Exponent(1.0**2.0))*np.sin( x_bound ) + (3.0/test.Laplace_Exponent(3.0**2.0))*np.sin( 3.0*x_bound ) \
+act_val = (1.0/test.Laplace_Exponent(1.0**2.0))*np.sin( x_bound ) \
+    + (3.0/test.Laplace_Exponent(3.0**2.0))*np.sin( 3.0*x_bound ) \
     + (10.0/test.Laplace_Exponent(10.0**2.0))*np.sin( 10.0*x_bound )
 
 #Plot of u(x, 0)

@@ -6,12 +6,12 @@ import time
 import Krein_Brownian_Killed_Class as BMKill
 
 class Krein_Corr:
-    """This class simulates the Krein correspondence for a Krein string given by a sum of 
-    weighted Dirac measures, which may be used to approximate any given Krein string.
-    To initialise the class, we require two numpy arrays, y and m, where y is a partition 
-    of an interval [0, R] (with y[0] = 0 and y[-1] = R) and m corresponds to the Dirac point 
-    measure on this partition. For simplicity, we assume that (in the notation of the thesis)
-    that L = R < infty so the corresponding gap diffusion is killed upon hitting R.
+    """This class simulates the Krein correspondence for a Krein string given by a sum of \
+        weighted Dirac measures, which may be used to approximate any given Krein string. \
+        To initialise the class, we require two numpy arrays, y and m, where y is a partition \
+        of an interval [0, R] (with y[0] = 0 and y[-1] = R) and m corresponds to the Dirac point \
+        measure on this partition. For simplicity, we assume that (in the notation of the thesis) \
+        that L = R < infty so the corresponding gap diffusion is killed upon hitting R.
     """
 
     def __init__(self, y, m):
@@ -22,10 +22,10 @@ class Krein_Corr:
         
     def Extension_Func(self, xi):
         """
-        We use the finite difference approximation of the BVP problem associated with the
-        extension function. This BVP is given by,
-        f''(y) = xi f(y)m(diff y), f(0) = 1, f(R) = 0,
-        for fixed xi in [0, infty). 
+        We use the finite difference approximation of the BVP problem associated with the \
+            extension function. This BVP is given by, \
+            f''(y) = xi f(y)m(diff y), f(0) = 1, f(R) = 0, \
+            for fixed xi in [0, infty). 
         """
         y, m = self.y, self.m
         N = y.size
@@ -49,11 +49,11 @@ class Krein_Corr:
         
     def Laplace_Exponent(self, xi, method = "CtdFrac"):
         """
-        In this function we calculate the Laplace exponent at xi associated with the Krein string m via two 
-        different methods: first by calculating the derivative at zero of extension function associated 
-        with m, the second by directly calculating the continued fraction representation of 
-        the complete Bernstein function. We set the default method to be the continued fraction method
-        as the extension method is much slower due to the matrix computations imvolved.  
+        In this function we calculate the Laplace exponent at xi associated with the Krein string m via two \
+            different methods: first by calculating the derivative at zero of extension function associated \
+            with m, the second by directly calculating the continued fraction representation of the complete \
+            Bernstein function. We set the default method to be the continued fraction method as the \
+            extension method is much slower due to the matrix computations imvolved.  
         """
         if method == "FinDiff":
             phi_approx = self.Extension_Func(xi)
@@ -85,8 +85,8 @@ class Krein_Corr:
         
     def Subordinator_pdf(self, t, T, N): 
         """
-        In this function, we employ mpmath library to invert the Laplace transform of exp(-t*psi)
-        where psi is the Laplace exponent numerically, giving the pdf of T_t.        
+        In this function, we employ mpmath library to invert the Laplace transform of exp(-t*psi)\
+            where psi is the Laplace exponent numerically, giving the pdf of T_t.        
         """
         def Laplace_Trans_of_Sub(eta):
             Log_Lap_of_Sub = self.Laplace_Exponent( eta , method = "CtdFrac" )
@@ -108,7 +108,7 @@ def main():
     N = int(1E2)
     R = 1.0
     y = np.linspace(0.0, R, N)
-    m = (1.0/N)*np.ones(N)
+    m = (R/N)*np.ones(N)
     
     BM_Example = Krein_Corr(y, m)
     BM_Actual = BMKill.Krein_Brownian_Killed(R)
@@ -150,12 +150,15 @@ def main():
     
     
     T = 2.0
-    N_t = 100
+    N_t = 150
     times = np.linspace(0.0, T, N_t)
     
     tic = time.perf_counter()      
     sub_05 = BM_Example.Subordinator_pdf(0.5, T, N_t)
     print("Laplace transform to find pdf of T_{0.5} complete.")
+
+    sub_075 = BM_Example.Subordinator_pdf(0.75, T, N_t)
+    print("Laplace transform to find pdf of T_{0.75} complete.")
 
     sub_1 = BM_Example.Subordinator_pdf(1.0, T, N_t)
     print("Laplace transform to find pdf of T_{1.0} complete.")
@@ -167,6 +170,7 @@ def main():
     print(f"Laplace transforms in {toc - tic:0.4f} seconds")
 
     plt.plot(times, sub_05, "g-", label=r"pdf of $T_{0.5}$")
+    plt.plot(times, sub_075, "r-", label=r"pdf of $T_{0.75}$")
     plt.plot(times, sub_1, "c-", label=r"pdf of $T_{1.0}$")
     plt.plot(times, sub_2, "m-", label=r"pdf of $T_{2.0}$")
     plt.xlabel(r"Time $t$")

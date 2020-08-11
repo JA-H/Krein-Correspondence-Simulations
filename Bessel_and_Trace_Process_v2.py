@@ -14,8 +14,8 @@ class Bessel:
              #Constant that appears in corresponding speed measure of the rescaled Bessel process
 
     def Squared_Bessel_Process(self):
-        """In order to simulate a Bessel process, we use the algorithm 
-        found in 'Makarov, & Glew. Exact simulation of Bessel diffusions'. """
+        """In order to simulate a Bessel process, we use the algorithm \
+            found in 'Makarov, & Glew. Exact simulation of Bessel diffusions'. """
         Q = np.zeros(self.Num) # Memory for Squared Bessel process
         error = 1E-6 
     
@@ -34,9 +34,9 @@ class Bessel:
         return (self.c_alpha)*(self.Bessel_Process() )**(self.alpha)
 
     def Local_Time(self, delta, Y):
-        """This function takes a time T, a time increment dt, a rescaled Bessel Process Y 
-        with dimension dim and a small value delta and returns the approximate local time
-        of the sample path."""
+        """This function takes a time T, a time increment dt, a rescaled Bessel \
+            Process Y with dimension dim and a small value delta and returns the \
+            approximate local time of the sample path."""
         alpha = self.alpha
         dim = self.dim
         c_alpha = self.c_alpha
@@ -56,8 +56,8 @@ class Bessel:
         return Lt
 
 def Brownian_Motion(T, dt):
-    """This function takes a time T and a time increment dt and returns an array of 
-    the values of the X_t process at these time increments."""
+    """This function takes a time T and a time increment dt and returns an \
+        array of the values of the X_t process at these time increments."""
         
     N = round(T/dt) # Number of time-steps
     X = np.random.standard_normal(size = N)
@@ -91,5 +91,5 @@ def main(T, dt, dim, delta):
     return 0
 
 
-main(T = 10.0**2, dt = 1E-5, dim = 1.2, delta = 1E-3)
+main(T = 10.0**3, dt = 1E-5, dim = 1.2, delta = 1E-4)
 main(T = 10.0**3, dt = 1E-4, dim = 0.8, delta = 1E-4)

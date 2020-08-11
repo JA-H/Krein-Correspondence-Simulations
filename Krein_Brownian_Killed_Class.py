@@ -3,8 +3,9 @@ import matplotlib.pyplot as plt
 
 class Krein_Brownian_Killed:
     """
-    This class contains the formulas for the extension function and Laplace exponent of a reflected Brownian motion in [0, R]
-    killed upon hitting R.
+    This class contains the formulas for the extension function and \
+        Laplace exponent of a reflected Brownian motion in [0, R] \
+        killed upon hitting R.
     """
     def __init__(self, R, error = 1E-10):
         self.R = R
