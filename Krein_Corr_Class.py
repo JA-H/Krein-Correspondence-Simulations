@@ -143,7 +143,7 @@ def main():
     plt.plot(xi_values, phi_exact, 'b-', label=r"$\psi$ calculated as continued fraction", linewidth = 0.5)
     plt.plot(xi_values, phi_formula,'g-', label=r"Exact representation of $\psi$", linewidth = 0.5)
     plt.xlabel(r"$\lambda$")
-    plt.xlabel(r"$\psi(\lambda)$")
+    plt.ylabel(r"$\psi(\lambda)$")
     plt.legend()
     plt.savefig("CBF_comparison.png", dpi = 300)
     plt.close()

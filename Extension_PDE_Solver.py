@@ -61,6 +61,8 @@ act_val = (1.0/test.Laplace_Exponent(1.0**2.0))*np.sin( x_bound ) + (3.0/test.La
 #Plot of u(x, 0)
 plt.plot( x_bound, u_bound_val, "-r", label="Simulated boundary values")
 plt.plot( x_bound, act_val, "-m", label="Actual boundary values" )
+plt.xlabel(r"$0 \leq x \leq 2\pi$")
+plt.ylabel(r"$u(x, 0)$")
 plt.legend()
 plt.savefig("boundary_values_of_pde.png", dpi = 300)
 plt.show()

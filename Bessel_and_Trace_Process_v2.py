@@ -1,6 +1,3 @@
-"""
-This code simulates a sample path of a Bessel process and the corresponding local time process at zero.
-"""
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.special import gamma

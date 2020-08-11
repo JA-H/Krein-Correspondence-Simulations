@@ -24,9 +24,6 @@ class Krein_Bessel:
     
     def Speed_Measure_Density(self, y):
         return (1.0/( (self.alpha**2.0)*( self.c_alpha**(2.0/self.alpha) ) )  )*y**(2.0/self.alpha - 2.0)
-    
-
-
 
 def main():
     B = Krein_Bessel(1.0)
