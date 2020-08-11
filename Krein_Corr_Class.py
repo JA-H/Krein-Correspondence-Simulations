@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import mpmath as mpm
 import time
 
-from scipy.stats import levy, levy_stable
+import Krein_Brownian_Killed_Class as BMKill
 
 class Krein_Corr:
     """This class simulates the Krein correspondence for a Krein string given by a sum of 
@@ -104,20 +104,14 @@ class Krein_Corr:
         return sub_dist
     
 def main():
+    #Defining the approxiamtion of BM in [0, 1.0] killed upon hitting 1.0.
     N = int(1E2)
     R = 1.0
     y = np.linspace(0.0, R, N)
     m = (1.0/N)*np.ones(N)
     
     BM_Example = Krein_Corr(y, m)
-
-    def Actual_Psi(xi):
-        if xi.any() < 1E-10:
-            return 1.0
-        else:
-            psi = np.sqrt(xi)*(1.0 + np.exp(-2.0*np.sqrt(xi) ))/(1.0 - np.exp(-2.0*np.sqrt(xi) ))
-            return psi
-    
+    BM_Actual = BMKill.Krein_Brownian_Killed(R)
 
     xi_N = int(1E4)
     xi_max = 100.0
@@ -131,19 +125,19 @@ def main():
     for i in range(xi_N):
         phi_approx[i] = BM_Example.Laplace_Exponent(xi_values[i], "FinDiff")        
     toc = time.perf_counter()
-    print(f" 'FinDiff' in {toc - tic:0.4f} seconds")
+    print(f"'FinDiff' took {toc - tic:0.2f} seconds")
 
     tic = time.perf_counter()
     for i in range(xi_N):
         phi_exact[i] = BM_Example.Laplace_Exponent(xi_values[i], "CtdFrac")        
     toc = time.perf_counter()
-    print(f" 'CtdFrac' in {toc - tic:0.4f} seconds")
+    print(f"'CtdFrac' took {toc - tic:0.2f} seconds")
 
     tic = time.perf_counter()
     for i in range(xi_N):
-        phi_formula[i] = Actual_Psi(xi_values[i])        
+        phi_formula[i] = BM_Actual.Laplace_Exponent(xi_values[i])        
     toc = time.perf_counter()
-    print(f" Formula in {toc - tic:0.4f} seconds")
+    print(f"Exact formula took {toc - tic:0.2f} seconds")
 
     plt.plot(xi_values, phi_approx, 'r-', label=r"$\psi$ calculated via extension function", linewidth = 0.5)
     plt.plot(xi_values, phi_exact, 'b-', label=r"$\psi$ calculated as continued fraction", linewidth = 0.5)
@@ -156,18 +150,18 @@ def main():
     
     
     T = 2.0
-    N_t = 20
+    N_t = 100
     times = np.linspace(0.0, T, N_t)
     
     tic = time.perf_counter()      
     sub_05 = BM_Example.Subordinator_pdf(0.5, T, N_t)
-    print("0.5 Complete")
+    print("Laplace transform to find pdf of T_{0.5} complete.")
 
     sub_1 = BM_Example.Subordinator_pdf(1.0, T, N_t)
-    print("1.0 Complete")
+    print("Laplace transform to find pdf of T_{1.0} complete.")
     
     sub_2 = BM_Example.Subordinator_pdf(2.0, T, N_t)
-    print("2.0 Complete")
+    print("Laplace transform to find pdf of T_{2.0} complete.")
     
     toc = time.perf_counter()
     print(f"Laplace transforms in {toc - tic:0.4f} seconds")

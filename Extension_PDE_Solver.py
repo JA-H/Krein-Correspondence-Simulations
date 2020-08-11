@@ -8,7 +8,7 @@ from Krein_Brownian_Killed_Class import *
 # PDE domain is (x_0, x_1)x(0, R) with N_x (resp. N_y) points in x (resp. y)
 x_0, x_1 = 0.0, 2.0*np.pi
 R = 2.0*np.pi
-N_x, N_y = 200, 1000
+N_x, N_y = 200, 200
 
 test = Krein_Brownian_Killed(R)
 
@@ -52,11 +52,13 @@ plt.ylabel(r"$0 \leq y \leq 2\pi$")
 plt.savefig("pde.png", dpi = 300)
 plt.close()
 
-#Plot of u(x, 0)
+#Simulated u(x, 0) vs. Actual u(x, 0)
 x_bound = np.linspace(x_0, x_1, N_x )
 u_bound_val = np.array( [u(x, 0.0) for x in x_bound ] )
-act_val = (1.0/test.Laplace_Exponent(1.0**2.0))*np.sin( x_bound ) + (3.0/test.Laplace_Exponent(3.0**2.0))*np.sin( 3.0*x_bound ) + (10.0/test.Laplace_Exponent(10.0**2.0))*np.sin( 10.0*x_bound )
+act_val = (1.0/test.Laplace_Exponent(1.0**2.0))*np.sin( x_bound ) + (3.0/test.Laplace_Exponent(3.0**2.0))*np.sin( 3.0*x_bound ) \
+    + (10.0/test.Laplace_Exponent(10.0**2.0))*np.sin( 10.0*x_bound )
 
+#Plot of u(x, 0)
 plt.plot( x_bound, u_bound_val, "-r", label="Simulated boundary values")
 plt.plot( x_bound, act_val, "-m", label="Actual boundary values" )
 plt.legend()

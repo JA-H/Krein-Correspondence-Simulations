@@ -84,7 +84,7 @@ def main(T, dt, dim, delta):
     plt.close()
 
     #Subordinated Process Plot
-    plt.plot(L, X, linewidth=0.5)
+    plt.plot(L, X, linewidth=0.3)
     plt.xlabel(r'$(L^0_t(Y))_{t \geq 0}$')
     plt.ylabel(r'$(X_t)_{t \geq 0}$')
     plt.savefig('./Plot_of_Trace_Process_alpha='+ str(Bes.alpha) + '.png', dpi=300)
@@ -93,11 +93,6 @@ def main(T, dt, dim, delta):
     
     return 0
 
-T = 1000.0
-dt = 1E-4
-delta_0 = 1E-4
 
-main(T, dt, dim = 1.2, delta = delta_0)
-main(T, dt, dim = 1.0, delta = delta_0)
-main(T, dt, dim = 0.8, delta = delta_0)
-main(T, dt, dim = 0.5, delta = delta_0)
+main(T = 10.0**2, dt = 1E-5, dim = 1.2, delta = 1E-3)
+main(T = 10.0**3, dt = 1E-4, dim = 0.8, delta = 1E-4)
