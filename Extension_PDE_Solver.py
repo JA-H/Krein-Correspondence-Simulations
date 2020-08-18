@@ -1,14 +1,13 @@
 import numpy as np
 import fenics as pde
 import matplotlib.pyplot as plt
-import mpl_toolkits.mplot3d as plt3d
 
 from Krein_Brownian_Killed_Class import *
 
 # PDE domain is (x_0, x_1)x(0, R) with N_x (resp. N_y) points in x (resp. y)
-x_0, x_1 = 0.0, 2.0*np.pi
-R = 2.0*np.pi
-N_x, N_y = 200, 200
+x_0, x_1 = 0.0, np.pi
+R = np.pi
+N_x, N_y = 100, 100
 
 test = Krein_Brownian_Killed(R)
 
@@ -47,8 +46,8 @@ vtkfile << u
 
 plt.colorbar(p)
 plt.plot()
-plt.xlabel(r"$0 \leq x \leq 2\pi$")
-plt.ylabel(r"$0 \leq y \leq 2\pi$")
+plt.xlabel(r"$0 \leq x \leq \pi$")
+plt.ylabel(r"$0 \leq y \leq \pi$")
 plt.savefig("pde.png", dpi = 300)
 plt.close()
 
@@ -62,7 +61,7 @@ act_val = (1.0/test.Laplace_Exponent(1.0**2.0))*np.sin( x_bound ) \
 #Plot of u(x, 0)
 plt.plot( x_bound, u_bound_val, "-r", label="Simulated boundary values")
 plt.plot( x_bound, act_val, "-m", label="Actual boundary values" )
-plt.xlabel(r"$0 \leq x \leq 2\pi$")
+plt.xlabel(r"$0 \leq x \leq \pi$")
 plt.ylabel(r"$u(x, 0)$")
 plt.legend()
 plt.savefig("boundary_values_of_pde.png", dpi = 300)
