@@ -7,7 +7,7 @@ from Krein_Brownian_Killed_Class import *
 # PDE domain is (x_0, x_1)x(0, R) with N_x (resp. N_y) points in x (resp. y)
 x_0, x_1 = 0.0, np.pi
 R = np.pi
-N_x, N_y = 100, 100
+N_x, N_y = 150, 150
 
 test = Krein_Brownian_Killed(R)
 

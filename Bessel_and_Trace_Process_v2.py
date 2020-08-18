@@ -17,7 +17,7 @@ class Bessel:
         """In order to simulate a Bessel process, we use the algorithm \
             found in 'Makarov, & Glew. Exact simulation of Bessel diffusions'. """
         Q = np.zeros(self.Num) # Memory for Squared Bessel process
-        error = 1E-6 
+        error = 1E-10
     
         for i in range(self.Num - 1):
             if Q[i] <= error:
@@ -90,6 +90,5 @@ def main(T, dt, dim, delta):
     
     return 0
 
-
-main(T = 10.0**3, dt = 1E-5, dim = 1.2, delta = 1E-4)
-main(T = 10.0**3, dt = 1E-4, dim = 0.8, delta = 1E-4)
+main(T = 10.0**4, dt = 1E-3, dim = 0.8, delta = 1E-3)
+main(T = 10.0**4, dt = 1E-3, dim = 1.2, delta = 5E-2) 
