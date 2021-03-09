@@ -1,4 +1,0 @@
-/tmp/tmppc6pphqh/dolfin_expression_ea61cb486bf9f93189797d696792e049.cpp: In member function ‘virtual void dolfin::dolfin_expression_ea61cb486bf9f93189797d696792e049::eval(Eigen::Ref<Eigen::Matrix<double, -1, 1> >, Eigen::Ref<const Eigen::Matrix<double, -1, 1> >) const’:
-/tmp/tmppc6pphqh/dolfin_expression_ea61cb486bf9f93189797d696792e049.cpp:61:27: error: ‘x_1x’ was not declared in this scope
-           values[0] = sin(x_1x[0]);
-                           ^~~~
