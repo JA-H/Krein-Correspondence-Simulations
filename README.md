@@ -1,0 +1,1 @@
+One of the key results that is used in the author's PhD thesis is the Krein correspondence which provides a one-to-one correspondence between the family of complete Bernstein functions and the set of Krein strings.
