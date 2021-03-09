@@ -76,7 +76,7 @@ def main(T, dt, dim, delta):
     plt.plot(X, Y, linewidth=0.1)
     plt.xlabel(r'$(X_t)_{t \geq 0}$')
     plt.ylabel(r'$(Y_t)_{t \geq 0}$')
-    plt.savefig('./Plot_of_Pair_Process_alpha=' + str(Bes.alpha) + '.png', dpi=300)
+    plt.savefig('./images/Plot_of_Pair_Processes/Plot_of_Pair_Process_alpha=' + str(Bes.alpha) + '.png', dpi=300)
     plt.show()
     plt.close()
 
@@ -84,7 +84,7 @@ def main(T, dt, dim, delta):
     plt.plot(L, X, linewidth=0.3)
     plt.xlabel(r'$(L^0_t(Y))_{t \geq 0}$')
     plt.ylabel(r'$(X_t)_{t \geq 0}$')
-    plt.savefig('./Plot_of_Trace_Process_alpha='+ str(Bes.alpha) + '.png', dpi=300)
+    plt.savefig('./images/Plot_of_Pair_Processes/Plot_of_Trace_Process_alpha='+ str(Bes.alpha) + '.png', dpi=300)
     plt.show()
     plt.close()
     

@@ -40,7 +40,7 @@ def main():
         Fractional_approx[i] = ( 1.0 - B.Extension_Func(xi[i], 0.1) )/0.1
     
     plt.plot(xi, np.exp(-Fractional), xi, np.exp(-Fractional_approx) )
-    plt.savefig('test.png', dpi=300)
+    plt.savefig('./images/test.png', dpi=300)
     plt.show()
 
 main()

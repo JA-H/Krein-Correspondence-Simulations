@@ -145,7 +145,7 @@ def main():
     plt.xlabel(r"$\lambda$")
     plt.ylabel(r"$\psi(\lambda)$")
     plt.legend()
-    plt.savefig("CBF_comparison.png", dpi = 300)
+    plt.savefig("./images/CBF_comparison.png", dpi = 300)
     plt.close()
     
     
@@ -176,7 +176,7 @@ def main():
     plt.xlabel(r"Time $t$")
     plt.ylabel(r"pdf of $T_s$ at time $t$")
     plt.legend()
-    plt.savefig("subordinator_pdfs.png", dpi = 300)
+    plt.savefig("./images/subordinator_pdfs.png", dpi = 300)
     plt.show()
     plt.close
 
